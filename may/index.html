@@ -59,7 +59,7 @@
     .hero-img {
       width: 100%; height: 100%;
       object-fit: cover; object-position: center 35%;
-                filter: blur(12px) brightness(2.2); transform: scale(1.1);
+                filter: blur(10px) brightness(1.6); transform: scale(1.1);
     }
     .hero-overlay {
       position: absolute; inset: 0;
@@ -164,7 +164,7 @@
     /* ── PULL QUOTE ── */
     .pull-quote {
       font-family: 'Cormorant Garamond', serif;
-          font-size: var(--fs-base); font-style: italic;
+          font-size: var(--fs-lg); font-style: italic; font-weight: 500;
       color: var(--forest); line-height: 1.65;
       border-top: 1px solid var(--gold-light);
       border-bottom: 1px solid var(--gold-light);
@@ -445,7 +445,7 @@
       .donation-title { font-size: 0.8rem; }
       footer p { font-size: 0.82rem; }
     }
-.prose p { font-size: 1.15rem; line-height: 2.05; }
+      .prose p { font-size: 1.15rem; line-height: 1.85; }
       .greeting { font-size: 1.22rem; line-height: 1.38; }
       .sec-title { font-size: 1.75rem; }
       .sub-h { font-size: 1.22rem; }
@@ -493,31 +493,31 @@
     <h2 class="sec-title">대체될 수 없는 존재</h2>
 
     <div class="prose">
-      <!-- Uber 이미지: 텍스트 우측 배치 (가로형 아닌 경우) -->
-      <div class="img-text-side flip">
-        <div class="img-w">
-          <img src="uber.png"
-               alt="AI and technology"
-               loading="lazy" decoding="async"
-               onerror="this.closest('.img-w').style.cssText='background:#e8e0d4;min-height:140px'">
-        </div>
-        <div class="txt-w">
           <p>하루가 다르게 세상이 바뀐다. Meta는 8천명의 직원들을 해고하며, 남은 이들의 마우스와 키보드 움직임을 기록해 그들을 대신할 AI 시스템을 훈련시키고 있고, Uber는 모든 운전자의 차량에 센서를 달아 자율주행 데이터를 확보하고 있다. 전장에서도 즉각적이고 정확한 대응을 위해 AI에 결정권을 넘겨야 한다는 현실이며, 다른 영역들도 예외가 없어 보인다. 그래서 사람들은 이렇게 묻기 시작했다.</p>
           <p style="font-weight:700;color:var(--deep-forest);">나의 쓸모는 언제까지일까? 이 경쟁에서 살아남을 수 있을까? 이제 어떻게 살아가야 할까?</p>
-        </div>
-      </div>
-
+        
       <p>그런데 성경은 이 질문들 자체가 틀렸음을 가르친다. <span class="bv">"내가 너를 지명하여 불렀나니 너는 내 것이라"<span class="bv-ref">(사 43:1)</span></span> 하심으로 나의 존재가 처음부터 하나님의 것이고, <span class="bv">"네가 내 눈에 보배롭고 존귀하며 내가 너를 사랑하였다"<span class="bv-ref">(사 43:4)</span></span> 는 말씀으로 나의 가치를 명확히 정의해주셨다. 창조의 목적 또한 <span class="bv">"이 백성은 내가 나를 위하여 지었나니 나의 찬송을 부르게 하려 함이니라"<span class="bv-ref">(사 43:21)</span></span> 는 말씀처럼, 나를 부르시고 끝까지 사랑하시는 주님을 온 삶으로 예배하는 것이다.</p>
 
       <h3 class="sub-h">시대가 변해도 달라지는 것은 없다.</h3>
 
-      <p><span class="bv">"여호와를 경외하는 것이 지혜의 근본"<span class="bv-ref">(잠 9:10)</span></span> 이라 하셨으니, 빅데이터와 첨단의 비서를 손에 쥐었어도 참된 지혜는 창조하시고 다스리시는 하나님을 경외하는 것이다. 그리고 주님 예수의 은혜를 날마다 힘입어 우리는 마음과 뜻과 정성을 다하여 하나님을 예배하고, 말씀을 붙들어 기도하고, 이웃을 내 몸처럼 사랑하고, 그리스도의 몸을 함께 세우며, 열방을 향해 생명을 전하는 과업을 멈추지 않을 것이다. 이것은 AI 에이전트가 수행할 수 있는 기능 목록이 아니라 <span class="bv">"하나님의 영으로 인도함을 받는"<span class="bv-ref">(롬 8:14)</span></span> 자들만이 살아낼 수 있는 영화로운 삶이다.</p>
+              <!-- Uber 이미지: 중간 배치 -->
+        <div class="img-text-side flip">
+          <div class="img-w">
+            <img src="uber.png"
+                 alt="AI and technology"
+                 loading="lazy" decoding="async"
+                 onerror="this.closest('.img-w').style.cssText='background:#e8e0d4;min-height:140px'">
+          </div>
+          <div class="txt-w">
+<p><span class="bv">"여호와를 경외하는 것이 지혜의 근본"<span class="bv-ref">(잠 9:10)</span></span> 이라 하셨으니, 빅데이터와 첨단의 비서를 손에 쥐었어도 참된 지혜는 창조하시고 다스리시는 하나님을 경외하는 것이다. 그리고 주님 예수의 은혜를 날마다 힘입어 우리는 마음과 뜻과 정성을 다하여 하나님을 예배하고, 말씀을 붙들어 기도하고, 이웃을 내 몸처럼 사랑하고, 그리스도의 몸을 함께 세우며, 열방을 향해 생명을 전하는 과업을 멈추지 않을 것이다. 이것은 AI 에이전트가 수행할 수 있는 기능 목록이 아니라 <span class="bv">"하나님의 영으로 인도함을 받는"<span class="bv-ref">(롬 8:14)</span></span> 자들만이 살아낼 수 있는 영화로운 삶이다.</p>
 
       <h3 class="sub-h">정복하고 다스려야 한다.</h3>
 
       <p>AI로 대변되는 지금의 시즌은 이전과 달라 보이지만, 태초부터 취소된 적 없는 <span class="bv">"땅을 정복하라, 다스리라"<span class="bv-ref">(창 1:28)</span></span> 는 말씀은 충성스런 청지기로의 부르심을 오늘도 명령하고 있다. 전문가들은 성과와 생존을 위해 모든 것을 AI에 위탁하라 조언하지만, 이는 탐심에 기인하여 믿음에서 떠나게 하는 <span class="bv">"우상숭배"<span class="bv-ref">(골 3:5)</span></span>가 될 수 있음을 주의하자. 바벨론의 학문과 기술의 중심에서도 하나님께서 <span class="bv">"지식과 모든 학문을 주셨"<span class="bv-ref">(단 1:17)</span></span>던 다니엘은 탁월하고 성결하게 자신의 역할을 감당할 수 있었다.</p>
 
       <p>인류를 위한, 뭐 그런게 아니라 여기서 밀리면 끝이라는 긴박감으로 기술을 개발하고 데이터 센터를 세워가는 무한경쟁의 시대이기에, 주님 앞에 더 깊이 머물며 말씀에 귀를 기울이고, 오늘을 살아갈 지혜와 동행하심을 구해야 한다. 믿음으로만 치러낼 수 있고 마땅히 치러내야 할 그 싸움을 감당하려면 말이다. <span class="bv">"세상 끝날까지 너희와 항상 함께 있으리라"<span class="bv-ref">(마 28:20)</span></span> 약속하셨고, <span class="bv">"나의 사랑, 나의 어여쁜 자야 일어나서 함께 가자"<span class="bv-ref">(아 2:13)</span></span> 초대하신 주님이 우리의 모든 걸음에 즐거이 동행하실 것이다.</p>
+                </div>
+        </div>
 
               <blockquote class="pull-quote" style="font-size:clamp(0.78rem,0.7rem+0.4vw,0.92rem);">
         누구와도, 무엇에도, 단 한 순간도 대체될 수 없는<br>
