@@ -25,7 +25,7 @@
             line-height: 1.8;
             margin: 0;
             padding: 0;
-            word-break: keep-all;
+            word-break: keep-all; /* 단어 단위로 줄바꿈 (한글 가독성 향상) */
             -webkit-font-smoothing: antialiased;
         }
 
@@ -150,7 +150,7 @@
             margin-bottom: 24px;
             font-size: 1.08rem;
             color: #333333;
-            text-align: justify;
+            text-align: justify; /* 데스크탑에서는 양쪽 정렬 유지 */
             line-height: 1.85;
         }
 
@@ -251,7 +251,7 @@
         }
         .btn-action:hover { background-color: #000; }
 
-        /* 4. 연합 예배/집회 섹션 */
+        /* 4. 연합 예배/집회 섹션 (수정됨: 불필요한 텍스트 삭제 및 카드 강조) */
         .worship-section {
             position: relative;
             padding: 90px 20px;
@@ -259,36 +259,24 @@
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .worship-section::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.55); 
+            background: rgba(0, 0, 0, 0.65); /* 배경을 조금 더 어둡게 하여 카드 강조 */
         }
 
         .worship-content {
             position: relative;
             z-index: 2;
+            width: 100%;
             max-width: 1000px;
             margin: 0 auto;
-        }
-
-        .worship-title {
-            text-align: center;
-            color: #fff;
-            font-family: 'Nanum Myeongjo', serif;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            margin-top: 0;
-        }
-
-        .worship-subtitle {
-            text-align: center;
-            color: #eaeaea;
-            margin-bottom: 50px;
-            font-size: 1.05rem;
         }
 
         .cards-grid {
@@ -298,61 +286,125 @@
 
         .glass-card {
             width: 100%;
-            max-width: 380px;
+            max-width: 420px; /* 크기 약간 확대 */
             background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 12px;
-            padding: 40px 30px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.4); /* 테두리 강조 */
+            border-radius: 16px; /* 둥글기 증가 */
+            padding: 50px 30px; /* 패딩 증가 */
             text-align: center;
             color: #fff;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4); /* 그림자 강조 */
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
         }
 
         .card-date {
             color: #a7f3d0;
-            font-size: 0.95rem;
+            font-size: 1.1rem; /* 폰트 크기 확대 */
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             margin-bottom: 15px;
         }
 
         .card-title {
             font-family: 'Nanum Myeongjo', serif;
-            font-size: 1.6rem;
+            font-size: 2rem; /* 폰트 크기 확대 */
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             line-height: 1.4;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
         }
 
         .card-desc {
-            font-size: 1rem;
+            font-size: 1.1rem; /* 폰트 크기 확대 */
             color: #f1f5f9;
             line-height: 1.7;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             flex-grow: 1;
         }
 
         .btn-poster {
             display: inline-block;
-            padding: 12px 0;
+            padding: 14px 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.3);
             color: #fff;
             text-decoration: none;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: background 0.3s;
-            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.6);
+            cursor: pointer;
         }
 
-        .btn-poster:hover { background: rgba(255, 255, 255, 0.4); }
+        .btn-poster:hover { 
+            background: rgba(255, 255, 255, 0.5); 
+            color: #000;
+        }
 
+        /* 이미지 모달 (포스터 보기 팝업) 스타일 */
+        .modal-overlay {
+            display: none; /* 기본적으로 숨김 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: #ccc;
+        }
 
         /* 5. Footer / Contact / Donation (Warm Dark Gray Theme) */
         .footer-section {
@@ -399,11 +451,18 @@
             margin-bottom: 5px;
         }
 
-        /* Donation Box - 수정된 부분 (자연스럽고 부드럽게) */
+        .divider {
+            width: 50px;
+            height: 1px;
+            background: #6c665c;
+            margin: 40px auto;
+        }
+
+        /* Donation Box */
         .donation-wrap {
             max-width: 760px;
-            margin: 60px auto 40px;
-            padding: 40px 20px;
+            margin: 0 auto 40px; /* margin 상단 0으로 수정 (위의 divider를 활용) */
+            padding: 0 20px 40px; /* padding 상단 0으로 수정 */
         }
 
         .donation-wrap > p {
@@ -462,6 +521,8 @@
             p {
                 font-size: 1.12rem; /* 모바일에서 텍스트 크기 확대 */
                 line-height: 1.85;
+                text-align: left; /* 모바일에서는 양쪽 정렬 해제 (어간 벌어짐 방지) */
+                word-break: keep-all; /* 단어 단위 줄바꿈 확실히 적용 */
             }
             
             .greeting { font-size: 1.3rem; margin-bottom: 40px; }
@@ -473,8 +534,11 @@
             
             .quote-text { font-size: 1.25rem; }
             
+            .worship-section { padding: 60px 20px; }
+            .glass-card { padding: 40px 20px; }
+            
             .bank-grid { grid-template-columns: 1fr; }
-            .donation-wrap { padding: 30px 10px; }
+            .donation-wrap { padding: 0 10px 30px; }
         }
     </style>
 </head>
@@ -517,7 +581,7 @@
 
             <h2>독일 헤른후트 72시간 예배</h2>
             
-            <img src="herrnhut.JPG" alt="진젠도르프 백작 흉상" class="full-img">
+            <img src="herrnhut.JPG" alt="진젠도르프 백작 흉상" class="full-img" onerror="this.src='https://placehold.co/800x400/e0e0e0/666666?text=Herrnhut+Image'">
             <p class="img-caption">100년간의 24시간 기도운동을 이끌며 기독교 부흥과 선교운동에 헌신한 모라비안 공동체의 지도자</p>
 
             <p>지난 한 주간은 독일 헤른후트에서의 72시간 예배에 참여하였습니다. 그 예배의 소중한 의미를 알기에 <strong class="highlight">'필요한 일이 무엇이든'</strong> 감당해보려 했고, 한 주간의 자막 준비에 이어 현장에서는 음향 시스템, 무대 준비, 그리고 예배로 섬기며 참여하였습니다.</p>
@@ -533,8 +597,8 @@
             <h2>영국 웨일즈 열방부흥축제</h2>
 
             <div class="image-grid">
-                <img src="cftn1.JPG" alt="깃발과 함께 드리는 예배 현장">
-                <img src="cftn2.JPG" alt="함께 모여 중보하는 다음 세대들">
+                <img src="cftn1.JPG" alt="깃발과 함께 드리는 예배 현장" onerror="this.style.display='none'">
+                <img src="cftn2.JPG" alt="함께 모여 중보하는 다음 세대들" onerror="this.style.display='none'">
             </div>
 
             <p>오는 7월 29일부터 7일간은 영국 웨일즈에서 열방부흥축제가 열립니다. 한국에서도 130명에 이르는 예배자들이 참여하고, 열방 곳곳의 예배자들이 부흥의 땅 웨일즈에 모여 온 마음으로 주님을 예배하는 시간입니다.</p>
@@ -563,13 +627,11 @@
 
         <div class="worship-section">
             <div class="worship-content">
-                <h2 class="worship-title">연합 예배/집회</h2>
-                <p class="worship-subtitle">아래는 함께 준비하여 섬기는 예배입니다</p>
-
+                <!-- 텍스트 삭제 및 카드 단독 배치로 강조 -->
                 <div class="cards-grid">
                     <div class="glass-card">
                         <div>
-                            <div class="card-date">JULY 29-AUG 4</div>
+                            <div class="card-date">JULY 29 - AUG 4</div>
                             <div class="card-title">Celebration for<br>the Nations</div>
                             <div class="card-desc">
                                 열방부흥축제<br><br>
@@ -577,7 +639,8 @@
                                 Selwyn Samuel Centre
                             </div>
                         </div>
-                        <a href="cftn3.JPG" target="_blank" class="btn-poster">안내 포스터 보기</a>
+                        <!-- 버튼 클릭 시 모달 열림 -->
+                        <button type="button" class="btn-poster" onclick="openModal()">안내 포스터 보기</button>
                     </div>
                 </div>
             </div>
@@ -593,13 +656,16 @@
                 <strong>이훈종, 김선영 <span style="font-size: 0.95rem; font-weight:normal;">선교사 드림</span></strong>
             </div>
 
-            <div style="width: 50px; height: 1px; background: #6c665c; margin: 40px auto;"></div>
+            <div class="divider"></div>
 
             <div class="footer-address">
                 <h3>런던 기도의 집</h3>
                 <p>230 Lillie Road, Fulham, London, SW6 7QA</p>
                 <p>월-금, 20:00 - 23:00 | 화 11:00 - 13:00</p>
             </div>
+
+            <!-- 요청하신 주소/시간과 후원 정보 사이의 구분선 추가 -->
+            <div class="divider"></div>
 
             <div class="donation-wrap">
                 <p>기도와 후원을 통해 런던 기도의 집을 함께 지키며 세워가실 수 있습니다.</p>
@@ -631,6 +697,39 @@
         </footer>
 
     </div>
+
+    <!-- 안내 포스터 모달 (숨겨진 영역) -->
+    <div id="posterModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal(event)">&times;</button>
+            <img src="cftn3.JPG" alt="열방부흥축제 포스터" class="modal-image" id="posterImage" onerror="this.src='https://placehold.co/600x800/2b2b2b/ffffff?text=Poster+Image+Not+Found'">
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('posterModal');
+
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+        }
+
+        function closeModal(event) {
+            // 모달 내용(이미지)을 클릭했을 때는 닫히지 않도록 방어
+            if (event && event.target.classList.contains('modal-image')) {
+                return;
+            }
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // 배경 스크롤 복구
+        }
+
+        // ESC 키 누르면 모달 닫기
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
 
 </body>
 </html>
