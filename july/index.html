@@ -437,7 +437,7 @@
                 padding: 40px 20px;
             }
             aside {
-                flex-direction: column-row; /* 가로 배열 유도 필요시 조정 가능 */
+                flex-direction: column-row;
             }
             .hero-title {
                 font-size: 2.2rem;
@@ -492,7 +492,7 @@
     <div class="container">
         <header>
             <div class="header-content">
-                <a href="#" class="logo">런던기주의집 <span>소식</span></a>
+                <a href="#" class="logo">런던기도의집 <span>소식</span></a>
                 <nav class="nav-links">
                     <a href="#section1">7월 메시지</a>
                     <a href="#section2">사역 나눔</a>
@@ -522,21 +522,68 @@
 
                 <section id="section2">
                     <span class="section-category">Ministry Update</span>
-                    <h2 class="section-title">7월 주요 사역 소식 및 은혜의 현장</h2>
+                    <h2 class="section-title">7월 사역 나눔 및 소식</h2>
                     
                     <div class="side-figure">
                         <img src="kim.JPG" alt="김종철 감독" class="side-img" onerror="this.src='https://placehold.co/280x350/2b2b2b/ffffff?text=Image+Not+Found'">
                         <p class="img-caption">Brad TV 김종철 감독 내외의 런던 방문</p>
                     </div>
                     
-                    <p>이번 달에는 특별한 만남과 연합의 은혜가 있었습니다. 이스라엘과 열방을 향한 미디어 선교에 앞장서고 계시는 Brad TV의 김종철 감독님 내외분께서 런던을 방문해 주셨습니다. 함께 모여 나눈 간증과 말씀은 기도의 집 식구들에게 큰 도전과 위로가 되었습니다. 특히 마지막 때를 살아가는 그리스도인들이 취해야 할 영적 분별력과 이스라엘을 향한 하나님의 마음을 깊이 깨닫는 귀한 시간이었습니다.</p>
-                    
-                    <blockquote>"열방이 주께 돌아와 예배하는 그날까지, 기도의 등불은 결코 꺼지지 않을 것입니다."</blockquote>
-                    
-                    <p>또한, 지역 교회들과의 연합 기도회가 정기적으로 개최되어 영적 돋움판을 마련했습니다. 각기 다른 교단과 세대가 오직 '예수 그리스도'의 이름 아래 하나 되어 런던과 영국의 영적 부흥을 부르짖을 때, 하늘의 문이 열리고 성령의 단비가 임하는 듯한 강력한 임재를 경험할 수 있었습니다. 기도의 연합이 일어날 때 원수의 진이 무너지고 하나님의 통치가 임함을 확신합니다.</p>
+                    <p>이번 7월 한달간 주님께서 하신 일들을 나눕니다.</p>
+                    <p>이번달엔 이스라엘과 열방을 향해 미디어 선교를 하시는 Brad TV의 김종철 감독님 내외분이 런던을 방문해 주셨습니다. 함께 나눈 간증과 말씀이 기도의집 식구들에게 큰 도전이 되었습니다.</p>
                 </section>
 
-                <section id="section3">
-                    <span class="section-category">Prayer Requests</span>
-                    <h2 class="section-title">함께 마음을 모아주실 기도제목</h2>
-                    <p><strong>1. 런던 기도의 집 예배자들을 위해:</strong> 지치
+            </div>
+
+            <aside>
+                <div class="sidebar-widget poster-widget">
+                    <h3 class="widget-title">소식 및 안내</h3>
+                    <p style="font-size:0.9rem; color:var(--text-light); text-align:center; margin-bottom:15px;">2026 열방부흥축제 안내 포스터를 확인하세요.</p>
+                    <button class="btn-poster" id="openModalBtn">안내 포스터 보기</button>
+                </div>
+            </aside>
+        </div>
+
+        <div class="modal" id="posterModal">
+            <div class="modal-content">
+                <span class="modal-close" id="closeModalBtn">&times;</span>
+                <img src="cftn3.jpg" alt="열방부흥축제 포스터" class="modal-image" id="posterImage" onerror="this.src='https://placehold.co/600x800/2b2b2b/ffffff?text=Poster+Image+Not+Found'">
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h4>런던 기도의 집 (London House of Prayer)</h4>
+                    <p>이 땅의 부흥과 열방의 회복을 위해 24시간 예배와 기도가 끊이지 않는 제단입니다.<br>언제든 오셔서 함께 예배하실 수 있습니다.</p>
+                </div>
+                <div class="footer-right">
+                    <p>Contact: info@lhop.org | Tel: +44 20 1234 5678</p>
+                    <p>© 2026 London House of Prayer. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const modal = document.getElementById('posterModal');
+        const openBtn = document.getElementById('openModalBtn');
+        const closeBtn = document.getElementById('closeModalBtn');
+
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
+
+        const closeModal = () => {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        };
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) closeModal();
+        });
+    </script>
+</body>
+</html>
