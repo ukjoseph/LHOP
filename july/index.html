@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026 July - 런던 기도의 집 소식</title>
+    <!-- 가독성이 가장 뛰어난 모던 폰트 Pretendard 및 포인트용 세리프 폰트 -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-color: #f4f3ef; /* 따뜻한 느낌의 미백색 바탕 */
             --text-main: #222222;
             --text-light: #555555;
-            --gold-accent: #c49a45;
+            --gold-accent: #c49a45; 
             --footer-bg: #3d3a35; /* 세련되고 따뜻한 웜 다크 그레이 */
             --white: #ffffff;
         }
@@ -33,318 +35,341 @@
             background-color: transparent;
         }
 
-        /* 상단 네비게이션 헤더 */
-        header {
-            background-color: var(--white);
-            border-bottom: 1px solid #e6e4dc;
-            padding: 15px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-        }
-
-        .header-content {
-            max-width: 1100px;
+        .content-wrap {
+            max-width: 800px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 60px 20px;
         }
 
-        .logo {
-            font-family: 'Nanum Myeongjo', serif;
-            font-weight: 800;
-            font-size: 1.3rem;
-            color: var(--text-main);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .logo span {
-            color: var(--gold-accent);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 25px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-light);
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--gold-accent);
-        }
-
-        /* 메인 배너 영역 */
-        .hero-section {
-            background-color: #e6e3da;
-            padding: 80px 20px;
-            text-align: center;
-            border-bottom: 1px solid #dcba75;
+        /* 1. Header Design (6월 소식지 레이아웃 반영 - 텍스트 하단 정렬) */
+        .hero-header {
             position: relative;
+            width: 100%;
+            height: 65vh; 
+            min-height: 450px;
+            display: flex;
+            align-items: flex-end; /* 하단 정렬 */
+            justify-content: center;
             overflow: hidden;
+            padding-bottom: 70px; /* 하단 여백 */
+            box-sizing: border-box;
         }
 
-        .hero-section::after {
-            content: '';
+        .hero-bg {
             position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--gold-accent);
+            top: -5%; left: -5%; width: 110%; height: 110%;
+            background-image: url('London.JPG');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px) brightness(0.65);
+            z-index: 1;
         }
 
-        .hero-subtitle {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--gold-accent);
-            margin-bottom: 15px;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            font-family: 'Nanum Myeongjo', serif;
+        }
+
+        .hero-date {
+            font-size: 1.15rem;
+            color: #d4af37;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            font-family: 'Nanum Myeongjo', serif;
             font-weight: 700;
         }
 
         .hero-title {
-            font-family: 'Nanum Myeongjo', serif;
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin: 0 0 20px 0;
-            line-height: 1.3;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.5);
             letter-spacing: -1px;
         }
 
-        .hero-date {
-            font-size: 1.05rem;
-            color: var(--text-light);
+        .hero-subtitle {
+            font-size: 1.4rem;
+            letter-spacing: 3px;
+            color: #e2e8f0;
             font-weight: 400;
+            font-family: 'Pretendard', sans-serif;
         }
 
-        /* 콘텐츠 레이아웃 */
-        .main-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 20px;
-            display: grid;
-            grid-template-columns: 1fr 320px;
-            gap: 50px;
+        .btn-prev-month {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            z-index: 3;
+            border: 1px solid rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            backdrop-filter: blur(5px);
+            transition: background 0.3s;
+            font-weight: 500;
         }
 
-        .articles-area {
-            background-color: transparent;
-        }
+        .btn-prev-month:hover { background: rgba(255,255,255,0.2); }
 
-        /* 섹션 스타일 (카드 형태 탈피, 매거진 룩) */
-        section {
-            margin-bottom: 70px;
-            padding-bottom: 50px;
-            border-bottom: 1px solid #e6e4dc;
-        }
-
-        section:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        .section-category {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gold-accent);
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        .section-title {
+        /* Typography & Layout inside content */
+        .greeting {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 50px;
+            text-align: center;
+            color: #1a1a1a;
             font-family: 'Nanum Myeongjo', serif;
-            font-size: 1.9rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin: 0 0 25px 0;
-            line-height: 1.4;
-            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: #111;
+            margin-top: 70px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--gold-accent);
+            margin: 15px auto 0;
         }
 
         p {
-            font-size: 1.05rem;
+            margin-bottom: 24px;
+            font-size: 1.08rem;
             color: #333333;
-            margin: 0 0 20px 0;
-            text-align: justify;
+            text-align: justify; /* 데스크탑에서는 양쪽 정렬 유지 */
+            line-height: 1.85;
         }
 
-        p:last-child {
-            margin-bottom: 0;
+        /* Highlight Text */
+        strong.highlight {
+            font-weight: 700;
+            color: #000;
+            box-shadow: inset 0 -12px 0 rgba(212, 175, 55, 0.25);
         }
 
-        .highlight-box {
-            background-color: #eae8e1;
-            border-left: 3px solid var(--gold-accent);
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .highlight-box p {
-            margin: 0;
-            font-style: italic;
-            color: var(--text-main);
-        }
-
-        /* 이미지 요소화 (김종철 감독 사진 및 캡션 그룹) */
-        .side-figure {
-            float: right;
-            width: 280px;
-            margin: 5px 0 20px 30px;
-        }
-
-        .side-img {
+        /* Image Styles */
+        .full-img {
             width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 30px 0 10px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .img-caption {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #666;
+            margin-top: 5px;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        /* 2. 김종철 감독 사진 */
+        .side-img {
+            float: right;
+            width: 280px; 
+            margin: 5px 0 20px 30px;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            display: block;
         }
 
-        .side-figure .img-caption {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-light);
-            text-align: center;
-            margin-top: 8px;
-            margin-bottom: 0;
-            font-style: normal;
-            line-height: 1.4;
-        }
+        .clearfix::after { content: ""; clear: both; display: table; }
 
-        /* 인용구 스타일 */
-        blockquote {
-            font-family: 'Nanum Myeongjo', serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--gold-accent);
-            line-height: 1.6;
-            margin: 35px 0;
-            padding-left: 20px;
-            border-left: 4px solid var(--gold-accent);
-            text-align: left;
-        }
-
-        /* 사이드바 영역 */
-        aside {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .sidebar-widget {
-            background-color: var(--white);
-            border: 1px solid #e6e4dc;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-        }
-
-        .widget-title {
-            font-family: 'Nanum Myeongjo', serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin: 0 0 20px 0;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #f0eee6;
-        }
-
-        /* 일정 리스트 스타일 */
-        .schedule-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .schedule-item {
-            display: flex;
-            align-items: flex-start;
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
-            padding: 12px 0;
-            border-bottom: 1px dashed #e6e4dc;
+            margin: 30px 0;
         }
 
-        .schedule-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+        .image-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
-        .schedule-date {
-            background-color: #eae8e1;
-            color: var(--text-main);
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 4px 8px;
-            border-radius: 4px;
-            white-space: nowrap;
-            margin-top: 2px;
+        /* Quote */
+        .quote-container {
+            text-align: center;
+            margin: 60px 0;
+            padding: 0 20px;
+        }
+        
+        .quote-mark {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 3rem;
+            color: #d4af37;
+            line-height: 0;
+            margin-bottom: 20px;
         }
 
-        .schedule-text {
+        .quote-text {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #222;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .quote-ref {
             font-size: 0.95rem;
             color: var(--text-light);
-            line-height: 1.5;
+            font-weight: 600;
         }
 
-        /* 포스터 이미지 및 버튼 윅젯 추가 */
-        .poster-widget {
+        /* Action Buttons */
+        .btn-center { text-align: center; margin: 40px 0; }
+        .btn-action {
+            display: inline-block;
+            padding: 14px 35px;
+            background-color: #2b2b2b;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+        .btn-action:hover { background-color: #000; }
+
+        /* 4. 연합 예배/집회 섹션 (수정됨: 불필요한 텍스트 삭제 및 카드 강조) */
+        .worship-section {
+            position: relative;
+            padding: 90px 20px;
+            background-image: url('cftn4.JPG'); 
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .worship-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.65); /* 배경을 조금 더 어둡게 하여 카드 강조 */
+        }
+
+        .worship-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cards-grid {
+            display: flex;
+            justify-content: center;
+        }
+
+        .glass-card {
+            width: 100%;
+            max-width: 420px; /* 크기 약간 확대 */
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.4); /* 테두리 강조 */
+            border-radius: 16px; /* 둥글기 증가 */
+            padding: 50px 30px; /* 패딩 증가 */
             text-align: center;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4); /* 그림자 강조 */
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+        }
+
+        .card-date {
+            color: #a7f3d0;
+            font-size: 1.1rem; /* 폰트 크기 확대 */
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 2rem; /* 폰트 크기 확대 */
+            font-weight: 800;
+            margin-bottom: 25px;
+            line-height: 1.4;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .card-desc {
+            font-size: 1.1rem; /* 폰트 크기 확대 */
+            color: #f1f5f9;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            flex-grow: 1;
         }
 
         .btn-poster {
             display: inline-block;
+            padding: 14px 0;
             width: 100%;
-            background-color: var(--gold-accent);
-            color: var(--white);
+            background: rgba(255, 255, 255, 0.3);
+            color: #fff;
             text-decoration: none;
-            padding: 13px;
             border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: background-color 0.2s, transform 0.2s;
-            border: none;
+            font-size: 1.05rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.6);
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(196, 154, 69, 0.2);
         }
 
-        .btn-poster:hover {
-            background-color: #b08739;
-            transform: translateY(-1px);
+        .btn-poster:hover { 
+            background: rgba(255, 255, 255, 0.5); 
+            color: #000;
         }
 
-        /* 모달 스타일 스크립트 대응 */
-        .modal {
-            display: none;
+        /* 이미지 모달 (포스터 보기 팝업) 스타일 */
+        .modal-overlay {
+            display: none; /* 기본적으로 숨김 */
             position: fixed;
-            z-index: 1000;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.85);
-            backdrop-filter: blur(5px);
-            align-items: center;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
             justify-content: center;
+            align-items: center;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .modal.show {
+        .modal-overlay.active {
             display: flex;
             opacity: 1;
         }
@@ -353,237 +378,362 @@
             position: relative;
             max-width: 90%;
             max-height: 90vh;
-            margin: auto;
-            display: block;
-            animation: zoomIn 0.3s ease;
-        }
-
-        @keyframes zoomIn {
-            from {transform: scale(0.95); opacity: 0;}
-            to {transform: scale(1); opacity: 1;}
         }
 
         .modal-image {
             max-width: 100%;
-            max-height: 85vh;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
             object-fit: contain;
-            border-radius: 6px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .modal-close {
             position: absolute;
-            top: -45px;
+            top: -40px;
             right: 0;
-            color: #ffffff;
+            color: white;
             font-size: 30px;
-            font-weight: 300;
+            font-weight: bold;
             cursor: pointer;
-            transition: color 0.2s;
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
         }
 
         .modal-close:hover {
-            color: var(--gold-accent);
+            color: #ccc;
         }
 
-        /* 하단 푸터 영역 */
-        footer {
+        /* 5. Footer / Contact / Donation (Warm Dark Gray Theme) */
+        .footer-section {
             background-color: var(--footer-bg);
-            color: #b5b2aa;
-            padding: 50px 20px;
-            font-size: 0.9rem;
-            border-top: 3px solid var(--gold-accent);
+            color: #fff;
+            padding: 90px 20px 50px;
+            text-align: center;
         }
 
-        .footer-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .footer-left h4 {
+        .footer-thanks {
             font-family: 'Nanum Myeongjo', serif;
-            color: var(--white);
-            font-size: 1.1rem;
-            margin: 0 0 15px 0;
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            color: #f8f4ec;
         }
 
-        .footer-left p {
-            color: #b5b2aa;
-            font-size: 0.9rem;
-            line-height: 1.6;
+        .footer-sender {
+            font-size: 0.95rem;
+            color: #b5b1a8;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
         }
 
-        .footer-right {
-            text-align: right;
-        }
-
-        .footer-right p {
-            color: #8c8980;
-            font-size: 0.85rem;
+        .footer-sender strong {
+            display: block;
+            font-size: 1.4rem;
+            color: #fff;
+            letter-spacing: 0;
             margin-top: 10px;
+            font-weight: 600;
         }
 
-        /* -----------------------------------------
-           반응형 모바일 레이아웃 (최대 900px, 600px)
-        ----------------------------------------- */
-        @media (max-width: 900px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                padding: 40px 20px;
-            }
-            aside {
-                flex-direction: column-row;
-            }
-            .hero-title {
-                font-size: 2.2rem;
-            }
+        .footer-address h3 {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fff;
         }
 
+        .footer-address p {
+            color: #d1cdc5;
+            font-size: 1.05rem;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .divider {
+            width: 50px;
+            height: 1px;
+            background: #6c665c;
+            margin: 40px auto;
+        }
+
+        /* Donation Box */
+        .donation-wrap {
+            max-width: 760px;
+            margin: 0 auto 40px; /* margin 상단 0으로 수정 (위의 divider를 활용) */
+            padding: 0 20px 40px; /* padding 상단 0으로 수정 */
+        }
+
+        .donation-wrap > p {
+            color: #c4c1b9;
+            text-align: center;
+            margin-bottom: 35px;
+            font-size: 1.05rem;
+        }
+
+        .bank-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .bank-card {
+            background-color: rgba(255, 255, 255, 0.06); /* 배경색에 부드럽게 스며드는 반투명 */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 25px 30px;
+            text-align: left;
+        }
+
+        .bank-title {
+            font-size: 0.85rem;
+            color: #a89f91;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .bank-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f4f1eb;
+            margin-bottom: 8px;
+        }
+
+        .bank-detail {
+            font-size: 0.95rem;
+            color: #c9c5bc;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .copyright {
+            margin-top: 60px;
+            font-size: 0.9rem;
+            color: #8b877f;
+        }
+
+        /* 모바일 환경 최적화 (가독성 향상) */
         @media (max-width: 600px) {
-            header {
-                padding: 15px;
+            .content-wrap { padding: 40px 20px; }
+            
+            p {
+                font-size: 1.12rem; /* 모바일에서 텍스트 크기 확대 */
+                line-height: 1.85;
+                text-align: left; /* 모바일에서는 양쪽 정렬 해제 (어간 벌어짐 방지) */
+                word-break: keep-all; /* 단어 단위 줄바꿈 확실히 적용 */
             }
-            .header-content {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .nav-links {
-                gap: 15px;
-            }
-            .hero-section {
-                padding: 50px 15px;
-            }
-            .hero-title {
-                font-size: 1.8rem;
-            }
-            section {
-                margin-bottom: 50px;
-                padding-bottom: 35px;
-            }
-            .section-title {
-                font-size: 1.5rem;
-            }
-            .side-figure {
-                width: 100%;
-                float: none;
-                margin: 10px 0 25px 0;
-            }
-            blockquote {
-                font-size: 1.1rem;
-                margin: 25px 0;
-            }
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            .footer-right {
-                text-align: center;
-            }
+            
+            .greeting { font-size: 1.3rem; margin-bottom: 40px; }
+            h2 { font-size: 1.6rem; margin-top: 50px; }
+            
+            .side-img { width: 100%; float: none; margin: 10px 0 25px 0; }
+            .hero-title { font-size: 2.5rem; }
+            .btn-prev-month { top: 15px; right: 15px; padding: 6px 15px; font-size: 0.8rem; }
+            
+            .quote-text { font-size: 1.25rem; }
+            
+            .worship-section { padding: 60px 20px; }
+            .glass-card { padding: 40px 20px; }
+            
+            .bank-grid { grid-template-columns: 1fr; }
+            .donation-wrap { padding: 0 10px 30px; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <header>
-            <div class="header-content">
-                <a href="#" class="logo">런던기도의집 <span>소식</span></a>
-                <nav class="nav-links">
-                    <a href="#section1">7월 메시지</a>
-                    <a href="#section2">사역 나눔</a>
-                    <a href="#section3">기도 제목</a>
-                </nav>
+        
+        <header class="hero-header">
+            <div class="hero-bg"></div>
+            <a href="https://ukjoseph.github.io/LHOP/june/?v=5" class="btn-prev-month">지난 6월 소식지 보기 →</a>
+            <div class="hero-content">
+                <div class="hero-date">2026 JULY</div>
+                <h1 class="hero-title">런던 기도의 집 소식</h1>
+                <div class="hero-subtitle">House of Prayer London</div>
             </div>
         </header>
 
-        <div class="hero-section">
-            <div class="hero-subtitle">London House of Prayer</div>
-            <h1 class="hero-title">주님의 영광이 머무는 곳</h1>
-            <div class="hero-date">2026년 7월 소식지</div>
-        </div>
+        <div class="content-wrap">
+            <div class="greeting">
+                사랑하는 동역자님께 주님의 평안을 전합니다.
+            </div>
 
-        <div class="main-content">
-            <div class="articles-area">
+            <p>지난 3주간 두 번의 특별한 시간을 가졌습니다. 올해 열두 번째를 맞이하는 런던에서의 이스라엘 컨퍼런스와 독일 헤른후트(Herrnhut)에서의 72시간 예배입니다.</p>
+
+            <h2>런던 이스라엘 컨퍼런스</h2>
+            
+            <div class="clearfix">
+                <figure class="side-figure">
+  <img src="kim.JPG" alt="김종철 감독 내외" class="side-img" onerror="this.style.display='none'">
+  <figcaption class="side-caption">Brad TV 김종철 감독 내외의 런던 방문</figcaption>
+</figure> onerror="this.style.display='none'">
+               
                 
-                <section id="section1">
-                    <span class="section-category">July Message</span>
-                    <h2 class="section-title">광야에서 길을 내시는 주님을 신뢰하며</h2>
-                    <p>사랑하는 동역자 여러분께 런던에서 문안 인사를 드립니다. 이번 7월 한 달 동안 런던 기도의 집은 하나님의 놀라운 인도하심과 채우심을 경험하는 은혜의 시간을 보냈습니다. 때로는 우리의 생각과 계획보다 앞서 행하시는 주님의 손길을 보며 오직 기도로만 나아가는 삶의 특권을 다시금 고백하게 됩니다.</p>
-                    <div class="highlight-box">
-                        <p>"보라 내가 새 일을 행하리니 이제 나타낼 것이라 너희가 그것을 알지 못하겠느냐 반드시 내가 광야에 길을 사막에 강을 내리니" (이사야 43:19)</p>
-                    </div>
-                    <p>영적으로 척박해져 가는 이 유럽의 중심 런던 땅에, 여전히 무릎 꿇고 눈물로 씨를 뿌리는 예배자들을 통해 하나님은 이미 새 일을 시작하셨음을 믿습니다. 우리가 마주한 상황이 비록 사막 같을지라도 주님께서 내실 강줄기를 기대하며 신실하게 기도의 자리를 지키겠습니다.</p>
-                </section>
-
-                <section id="section2">
-                    <span class="section-category">Ministry Update</span>
-                    <h2 class="section-title">7월 사역 나눔 및 소식</h2>
-                    
-                    <div class="side-figure">
-                        <img src="kim.JPG" alt="김종철 감독" class="side-img" onerror="this.src='https://placehold.co/280x350/2b2b2b/ffffff?text=Image+Not+Found'">
-                        <p class="img-caption">Brad TV 김종철 감독 내외의 런던 방문</p>
-                    </div>
-                    
-                    <p>이번 7월 한달간 주님께서 하신 일들을 나눕니다.</p>
-                    <p>이번달엔 이스라엘과 열방을 향해 미디어 선교를 하시는 Brad TV의 김종철 감독님 내외분이 런던을 방문해 주셨습니다. 함께 나눈 간증과 말씀이 기도의집 식구들에게 큰 도전이 되었습니다.</p>
-                </section>
-
+                <p>이스라엘은 여러 해 동안 전쟁을 이어오며 나라들의 지탄을 받고 있지만, 런던에서는 3일간 이스라엘 컨퍼런스를 가졌습니다. <strong class="highlight">"땅/나라의 회복, 백성의 회복/귀환, 영혼의 회복/구원"</strong>이라는 주제인데, 그것을 놀랍게 성취하시는 하나님의 신실하심을 경험하는 시간이었습니다.</p>
+                
+                <p>둘째 날은 강사인 김종철 감독(브래드/Brad TV) 내외분을 모시고 런던 시내를 안내하였고, 서로 대화를 이어가는 동안 몇 가지를 돌아보게 되었습니다.</p>
+                
+                <p>하나는, 이스라엘을 여러 차례 방문하며 연합하여 예배하는 일들을 해왔지만, 런던의 골더스 그린(Golders Green) 지역을 중심으로 거주하는 5만 명이 넘는 유대인들을 위한 기도에는 성실하지 못했다는 것,</p>
+                
+                <p>다른 하나는, 한국인을 위한 단 하나의 이스라엘 전문 방송인 브래드/Brad TV를 통해 여러 해 유익을 얻어왔지만 중보로 나아가지는 못한 것입니다.</p>
+                
+                <p>그리고, 런던에서 유대인 사역을 귀하게 감당해온 박계원 선교사님이 이번 컨퍼런스 준비를 끝으로 귀국하게 되어, 그 공백 역시 제게는 주께서 안겨주시는 영적 부담으로 다가왔습니다.</p>
             </div>
 
-            <aside>
-                <div class="sidebar-widget poster-widget">
-                    <h3 class="widget-title">소식 및 안내</h3>
-                    <p style="font-size:0.9rem; color:var(--text-light); text-align:center; margin-bottom:15px;">2026 열방부흥축제 안내 포스터를 확인하세요.</p>
-                    <button class="btn-poster" id="openModalBtn">안내 포스터 보기</button>
-                </div>
-            </aside>
-        </div>
+            <h2>독일 헤른후트 72시간 예배</h2>
+            
+            <img src="herrnhut.JPG" alt="진젠도르프 백작 흉상" class="full-img" onerror="this.src='https://placehold.co/800x400/e0e0e0/666666?text=Herrnhut+Image'">
+            <p class="img-caption">100년간의 24시간 기도운동을 이끌며 기독교 부흥과 선교운동에 헌신한 모라비안 공동체의 지도자</p>
 
-        <div class="modal" id="posterModal">
-            <div class="modal-content">
-                <span class="modal-close" id="closeModalBtn">&times;</span>
-                <img src="cftn3.jpg" alt="열방부흥축제 포스터" class="modal-image" id="posterImage" onerror="this.src='https://placehold.co/600x800/2b2b2b/ffffff?text=Poster+Image+Not+Found'">
+            <p>지난 한 주간은 독일 헤른후트에서의 72시간 예배에 참여하였습니다. 그 예배의 소중한 의미를 알기에 <strong class="highlight">'필요한 일이 무엇이든'</strong> 감당해보려 했고, 한 주간의 자막 준비에 이어 현장에서는 음향 시스템, 무대 준비, 그리고 예배로 섬기며 참여하였습니다.</p>
+
+            <p>12-18시간을 프랑스와 네덜란드에서 자가용으로 운전하여 온 이들, 한국에서는 경유 시간까지 서른 시간을 이동하기도 했습니다. 예배에 사용할 크고 작은 악기와 깃발, 함께 나눌 음식들까지 꼼꼼히 챙겨온 모습들, 누군가 요청하지 않았어도 <strong class="highlight">'할 수 있는 일이 무엇이든'</strong> 아낌없이 감당하려는 모습은 <strong class="highlight">'이들에게 주님이 어떤 분이신지'</strong>, <strong class="highlight">'부르신 곳에서 그 분을 높이는 것의 의미가 무엇인지'</strong>를 선명하게 보여주는 듯했습니다.</p>
+
+            <p>마치, 마리아가 옥합을 깨어 향유를 예수께 부어드린 모습에 제자들은 경악을 금치 못했지만, 그녀가 가진 모든 것을 내어드린들 주님께는 조금도 아까운 것이 아니었던 것처럼, 90명이 함께 어우러진 예배의 현장은 <strong class="highlight">'헌신과 희생, 순종'</strong>이라는 단어는 감추어지고 주님의 기뻐하심과 예배의 즐거움으로만 가득해 보였습니다.</p>
+
+            <div class="btn-center">
+                <a href="https://youtu.be/fkRikq0gJSc?si=GIF_Wxs1mNwc8O3b" target="_blank" class="btn-action">72시간 예배영상 보러가기</a>
+            </div>
+
+            <h2>영국 웨일즈 열방부흥축제</h2>
+
+            <div class="image-grid">
+                <img src="cftn1.JPG" alt="깃발과 함께 드리는 예배 현장" onerror="this.style.display='none'">
+                <img src="cftn2.JPG" alt="함께 모여 중보하는 다음 세대들" onerror="this.style.display='none'">
+            </div>
+
+            <p>오는 7월 29일부터 7일간은 영국 웨일즈에서 열방부흥축제가 열립니다. 한국에서도 130명에 이르는 예배자들이 참여하고, 열방 곳곳의 예배자들이 부흥의 땅 웨일즈에 모여 온 마음으로 주님을 예배하는 시간입니다.</p>
+
+            <p>이제 스무 번째가 되었는데, 부흥은 우리의 노력이 아니라 주님께로부터 임을 알기에, 부흥을 위해 예배를 수단으로 삼지 않고 순전한 예배로 주님을 높이고자 하는 이들이 모이게 됩니다. 그리고, 이곳으로 향하는 예배자들을 곧 맞이하게 되는데,</p>
+
+            <p>월드컵의 열기가 너무 뜨거워 승패의 감정으로 소요가 일어나기도 하고, 두 주간의 런던 윔블던 테니스도 지금 한창이라 온 동네를 테니스공으로 장식하였는데, 수만 명의 아미(Army)들은 BTS를 보려 그 큰 토트넘 구장을 가득 메우고 도시가 떠나갈 듯 노래를 따라 부르는 이때에,</p>
+
+            <p>이스라엘과 나라들의 회복, 그리고 부흥의 우물을 다시 솟아오르게 하시려 곳곳에서 예배자들을 모으시는 주의 일하심은 더욱 놀랍고, 또한 쉬지 않으심을 가까이 목도하고 있습니다.</p>
+
+            <p>젊은 시절에는 사울 왕에게 쫓기며, 왕이 된 후에는 아들 압살롬에게 쫓겨나는 중에도 다윗의 고백은 하나였습니다. 우리가 머무는 곳, 부르신 곳이 어디든 지금 이때에 깊이 간직해야 할 소중한 고백이라 여겨집니다.</p>
+            
+            <div class="quote-container">
+                <div class="quote-mark">"</div>
+                <div class="quote-text">
+                    내가 여호와께 바라는 한 가지 일 그것을 구하리니, 곧 내가 내 평생에 여호와의 집에 살면서 여호와의 아름다움을 바라보며 그의 성전에서 사모하는 그것이라
+                </div>
+                <div class="quote-ref">시편 27:4</div>
+            </div>
+            
+            <div class="btn-center">
+                <a href="https://youtu.be/7CGz43AxZiM?si=p9JfdY9_-IYy2p-O" target="_blank" class="btn-action">2026 웨일즈 열방부흥축제 홍보 영상</a>
+            </div>
+
+        </div> <!-- end content-wrap -->
+
+        <div class="worship-section">
+            <div class="worship-content">
+                <!-- 텍스트 삭제 및 카드 단독 배치로 강조 -->
+                <div class="cards-grid">
+                    <div class="glass-card">
+                        <div>
+                            <div class="card-date">JULY 29 - AUG 4</div>
+                            <div class="card-title">Celebration for<br>the Nations</div>
+                            <div class="card-desc">
+                                열방부흥축제<br><br>
+                                장소: 영국 웨일즈<br>
+                                Selwyn Samuel Centre
+                            </div>
+                        </div>
+                        <!-- 버튼 클릭 시 모달 열림 -->
+                        <button type="button" class="btn-poster" onclick="openModal()">안내 포스터 보기</button>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <footer>
-            <div class="footer-content">
-                <div class="footer-left">
-                    <h4>런던 기도의 집 (London House of Prayer)</h4>
-                    <p>이 땅의 부흥과 열방의 회복을 위해 24시간 예배와 기도가 끊이지 않는 제단입니다.<br>언제든 오셔서 함께 예배하실 수 있습니다.</p>
+        <footer class="footer-section">
+            <div class="footer-thanks">
+                믿음의 섬김과 동역, 그리고 사랑에 깊이 감사드립니다.
+            </div>
+
+            <div class="footer-sender">
+                2026. 07. LONDON SUTTON
+                <strong>이훈종, 김선영 <span style="font-size: 0.95rem; font-weight:normal;">선교사 드림</span></strong>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="footer-address">
+                <h3>런던 기도의 집</h3>
+                <p>230 Lillie Road, Fulham, London, SW6 7QA</p>
+                <p>월-금, 20:00 - 23:00 | 화 11:00 - 13:00</p>
+            </div>
+
+            <!-- 요청하신 주소/시간과 후원 정보 사이의 구분선 추가 -->
+            <div class="divider"></div>
+
+            <div class="donation-wrap">
+                <p>기도와 후원을 통해 런던 기도의 집을 함께 지키며 세워가실 수 있습니다.</p>
+                
+                <div class="bank-grid">
+                    <div class="bank-card">
+                        <div class="bank-title">KOREA ACCOUNT</div>
+                        <div class="bank-name">하나은행</div>
+                        <div class="bank-detail">
+                            150-890789-32007<br>
+                            예금주: 이훈종
+                        </div>
+                    </div>
+                    <div class="bank-card">
+                        <div class="bank-title">UK ACCOUNT</div>
+                        <div class="bank-name">Barclays Bank</div>
+                        <div class="bank-detail">
+                            Sort code: 20-46-73<br>
+                            Ac. no: 80091774<br>
+                            Name: HJ LEE
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-right">
-                    <p>Contact: info@lhop.org | Tel: +44 20 1234 5678</p>
-                    <p>© 2026 London House of Prayer. All Rights Reserved.</p>
-                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2026 HOUSE OF PRAYER LONDON. All rights reserved
             </div>
         </footer>
+
+    </div>
+
+    <!-- 안내 포스터 모달 (숨겨진 영역) -->
+    <div id="posterModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal(event)">&times;</button>
+            <img src="cftn3.JPG" alt="열방부흥축제 포스터" class="modal-image" id="posterImage" onerror="this.src='https://placehold.co/600x800/2b2b2b/ffffff?text=Poster+Image+Not+Found'">
+        </div>
     </div>
 
     <script>
         const modal = document.getElementById('posterModal');
-        const openBtn = document.getElementById('openModalBtn');
-        const closeBtn = document.getElementById('closeModalBtn');
 
-        openBtn.addEventListener('click', () => {
-            modal.classList.add('show');
-            document.body.style.overflow = 'hidden';
-        });
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+        }
 
-        const closeModal = () => {
-            modal.classList.remove('show');
-            document.body.style.overflow = '';
-        };
+        function closeModal(event) {
+            // 모달 내용(이미지)을 클릭했을 때는 닫히지 않도록 방어
+            if (event && event.target.classList.contains('modal-image')) {
+                return;
+            }
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // 배경 스크롤 복구
+        }
 
-        closeBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if(e.target === modal) closeModal();
+        // ESC 키 누르면 모달 닫기
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && modal.classList.contains('active')) {
+                closeModal();
+            }
         });
     </script>
+
 </body>
 </html>
